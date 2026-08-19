@@ -15,8 +15,9 @@ These notes trace that decision, layer by layer.
 ## 2. Architecture
 
 ### 2.1 Context Window Structure
-
-![context window structure](assets/context-window-structure.jpeg)
+<p align="left">
+  <img src="assets/context-window-structure.jpeg" width="700">
+</p>
 
 Four blocks, rebuilt every call. State never appears as its own block — it only shows up as
 substituted values inside the system instruction. Tool declarations consume tokens too, which
@@ -24,56 +25,67 @@ is easy to forget. Contents is the only block that grows without bound, which is
 compaction targets it and nothing else.
 
 ### 2.2 Agent Context Architecture
-
-![agent context architecture](assets/agent-context-architecture.jpeg)
+<p align="left">
+  <img src="assets/agent-context-architecture.jpeg" width="700">
+</p>
 
 ## 3. Use Cases
 
 ### 3.1 Session Service
-
-![use cases session service](assets/uc-session-service.jpeg)
+<p align="left">
+  <img src="assets/uc-session-service.jpeg" width="600">
+</p>
 
 ### 3.2 Memory Service
-
-![use cases memory service](assets/uc-memory-service.jpeg)
+<p align="left">
+  <img src="assets/uc-memory-service.jpeg" width="600">
+</p>
 
 ### 3.3 Agent
 
-![use cases agent](assets/uc-agent.jpeg)
+<p align="left">
+  <img src="assets/uc-agent.jpeg" width="600">
+</p>
 
 PreloadMemoryTool sits *inside* GenerateContext; LoadMemoryTool sits *outside* it, as a sibling.
 That placement is the whole difference between the two tools: one finishes before the model is
 called, the other is triggered by what the model returns.
 
 ### 3.4 Runner
-
-![use cases runner](assets/uc-runner.jpeg)
+<p align="left">
+  <img src="assets/uc-runner.jpeg" width="300">
+</p>
 
 ## 4. Sequence Diagrams
 
 ### 4.1 create_session
 
-![create_session](assets/seq-01-create-session.svg)
+<p align="left">
+  <img src="assets/seq-01-create-session.svg" width="700">
+</p>
 
 ### 4.2 append_event
-
-![append_event](assets/seq-02-append-event.svg)
+<p align="left">
+  <img src="assets/seq-02-append-event.svg" width="700">
+</p>
 
 One call does two things atomically: the event is appended to the log, and its `state_delta` is
 merged into state. There is no second "apply" step and no alternative write path. Writing to
 `session.state` directly bypasses both the persistence layer and the per-session lock.
 
 ### 4.3 compact event history
-
-![compact event history](assets/seq-03-compact-event-history.svg)
+<p align="left">
+  <img src="assets/seq-03-compact-event-history.svg" width="700">
+</p>
 
 The threshold check is a local count — no model involved. Only when it passes does a summarization
 call happen. The summary becomes a new event tagged with the range it covers; the raw events it
 covers are left untouched in storage.
 
 ### 4.4 add_session_to_memory
-
-![add_session_to_memory](assets/seq-04-add-session-to-memory.svg)
+<p align="left">
+  <img src="assets/seq-04-add-session-to-memory.svg" width="700">
+</p>
 
 Extraction is done by a model, so what gets remembered is not fully predictable — it may skip a fact
 you assumed would be kept. Consolidation compares newly extracted facts against existing entries in
@@ -81,19 +93,24 @@ the same scope, one atomic fact at a time. Facts that simply weren't re-extracte
 deleted.
 
 ### 4.5 search_memory
-
-![search_memory](assets/seq-05-search-memory.svg)
+<p align="left">
+  <img src="assets/seq-05-search-memory.svg" width="700">
+</p>
 
 ### 4.6 add_memory / delete_memory
 
 ![add and delete memory](assets/seq-06-add-delete-memory.svg)
+<p align="left">
+  <img src="assets/assets/seq-06-add-delete-memory.svg" width="700">
+</p>
 
 The opposite trade-off from 4.4: no model, no rewriting, exactly the text you pass in. Consolidation
 is opt-in here rather than automatic, so without the flag repeated writes accumulate duplicates.
 
 ### 4.7 PreloadMemoryTool
-
-![PreloadMemoryTool](assets/seq-07-preload-memory-tool.svg)
+<p align="left">
+  <img src="assets/seq-07-preload-memory-tool.svg" width="700">
+</p>
 
 No arrow reaches Events or State. The retrieved text exists only in this one request. The query can
 only be the user's message verbatim, because the model hasn't run yet and there is nothing better
@@ -102,6 +119,9 @@ to use.
 ### 4.8 LoadMemoryTool
 
 ![LoadMemoryTool](assets/seq-08-load-memory-tool.svg)
+<p align="left">
+  <img src="assets/seq-08-load-memory-tool.svg" width="700">
+</p>
 
 Both the call and its result are written to the event log, so they stay in every later prompt until
 compaction removes them. The query here is written by the model, which makes it sharper than
@@ -109,7 +129,9 @@ Preload's — paid for with an extra model round trip.
 
 ### 4.9 GenerateContext
 
-![GenerateContext](assets/seq-09-generate-context.svg)
+<p align="left">
+  <img src="assets/seq-09-generate-context.svg" width="700">
+</p>
 
 Pure read: no arrow writes to Events or State. Only one step leaves the process — Preload's retrieval.
 Everything else reads values that are already in memory.
@@ -117,6 +139,9 @@ Everything else reads values that are already in memory.
 ### 4.10 handle User turn
 
 ![handle user turn](assets/seq-10-handle-user-turn.svg)
+<p align="left">
+  <img src="assets/seq-10-handle-user-turn.svg" width="700">
+</p>
 
 GenerateContext is inside the loop, so every tool call rebuilds the entire prompt from scratch and
 sends it again. The user gets the reply before ingestion and the compaction check run — neither

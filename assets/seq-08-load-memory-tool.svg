@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="530" viewBox="0 0 680 530" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<style>
+.th{font-size:14px;font-weight:600;fill:#1f2933}
+.ts{font-size:12px;fill:#3e4c59}
+.arr{stroke:#7b8794;fill:none;stroke-width:1.2}
+.box{fill:#f5f7fa;stroke:#cbd2d9}
+.gray rect,.gray ellipse,.gray circle{fill:#f0efec;stroke:#b6b2a8}
+.teal rect,.teal ellipse{fill:#e3f2ee;stroke:#8fc7b8}
+.purple rect,.purple ellipse{fill:#efe9f6;stroke:#b9a6d4}
+.coral rect,.coral ellipse{fill:#fbebe6;stroke:#e0a08c}
+.gray text{fill:#3f3d38}.teal text{fill:#1f5c4d}.purple text{fill:#4a3768}.coral text{fill:#8f4229}
+</style>
+<rect width="680" height="530" fill="#ffffff"/>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#7b8794" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<text class="th" x="25" y="22" dominant-baseline="central">8. LoadMemoryTool</text>
+<text class="ts" x="25" y="41" dominant-baseline="central">runs after the model replies — only when the model decides to call it</text>
+<g class="gray"><rect x="25" y="58" width="112" height="38" rx="8" stroke-width="1"/><text class="ts" x="81.0" y="77.0" text-anchor="middle" dominant-baseline="central">Runner</text></g>
+<g class="purple"><rect x="180" y="58" width="112" height="38" rx="8" stroke-width="1"/><text class="ts" x="236.0" y="77.0" text-anchor="middle" dominant-baseline="central">LLM</text></g>
+<g class="coral"><rect x="335" y="58" width="112" height="38" rx="8" stroke-width="1"/><text class="ts" x="391.0" y="70.0" text-anchor="middle" dominant-baseline="central">Load</text><text class="ts" x="391.0" y="84.0" text-anchor="middle" dominant-baseline="central">MemoryTool</text></g>
+<g class="purple"><rect x="490" y="58" width="112" height="38" rx="8" stroke-width="1"/><text class="ts" x="546.0" y="77.0" text-anchor="middle" dominant-baseline="central">MemoryService</text></g>
+<g class="teal"><rect x="610" y="58" width="45" height="38" rx="8" stroke-width="1"/><text class="ts" x="632.5" y="70.0" text-anchor="middle" dominant-baseline="central">Ev-</text><text class="ts" x="632.5" y="84.0" text-anchor="middle" dominant-baseline="central">ents</text></g>
+<line x1="81" y1="96" x2="81" y2="470" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="236" y1="96" x2="236" y2="470" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="391" y1="96" x2="391" y2="470" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="546" y1="96" x2="546" y2="470" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="632" y1="96" x2="632" y2="470" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<text class="ts" x="156.5" y="120" text-anchor="middle">model call (context already built)</text>
+<line x1="81" y1="134" x2="228" y2="134" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="160.5" y="164" text-anchor="middle">function_call: load_memory(query)</text>
+<line x1="236" y1="178" x2="89" y2="178" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<text class="ts" x="354.5" y="208" text-anchor="middle">append_event(function_call)</text>
+<line x1="81" y1="222" x2="624" y2="222" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="234.0" y="252" text-anchor="middle">execute tool</text>
+<line x1="81" y1="266" x2="383" y2="266" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="466.5" y="296" text-anchor="middle">search_memory(app, user_id, query)</text>
+<line x1="391" y1="310" x2="538" y2="310" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="470.5" y="340" text-anchor="middle">matching entries</text>
+<line x1="546" y1="354" x2="399" y2="354" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<text class="ts" x="238.0" y="384" text-anchor="middle">function_response</text>
+<line x1="391" y1="398" x2="89" y2="398" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<text class="ts" x="354.5" y="428" text-anchor="middle">append_event(function_response) — persisted</text>
+<line x1="81" y1="442" x2="624" y2="442" class="arr" marker-end="url(#ar)"/>
+<line x1="25" y1="478" x2="655" y2="478" class="arr" stroke-width="1.5"/>
+<text class="ts" x="25" y="502" dominant-baseline="central">Scope ends here. The runner then rebuilds context — see get_contents — and calls the model again.</text>
+</svg>

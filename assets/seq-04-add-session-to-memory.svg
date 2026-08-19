@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="590" viewBox="0 0 680 590" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<style>
+.th{font-size:14px;font-weight:600;fill:#1f2933}
+.ts{font-size:12px;fill:#3e4c59}
+.arr{stroke:#7b8794;fill:none;stroke-width:1.2}
+.box{fill:#f5f7fa;stroke:#cbd2d9}
+.gray rect,.gray ellipse,.gray circle{fill:#f0efec;stroke:#b6b2a8}
+.teal rect,.teal ellipse{fill:#e3f2ee;stroke:#8fc7b8}
+.purple rect,.purple ellipse{fill:#efe9f6;stroke:#b9a6d4}
+.coral rect,.coral ellipse{fill:#fbebe6;stroke:#e0a08c}
+.gray text{fill:#3f3d38}.teal text{fill:#1f5c4d}.purple text{fill:#4a3768}.coral text{fill:#8f4229}
+</style>
+<rect width="680" height="590" fill="#ffffff"/>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#7b8794" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<text class="th" x="25" y="22" dominant-baseline="central">4. add_session_to_memory</text>
+<g class="gray"><rect x="25" y="45" width="110" height="38" rx="8" stroke-width="1"/><text class="ts" x="80.0" y="64.0" text-anchor="middle" dominant-baseline="central">Callback</text></g>
+<g class="purple"><rect x="153" y="45" width="110" height="38" rx="8" stroke-width="1"/><text class="ts" x="208.0" y="64.0" text-anchor="middle" dominant-baseline="central">MemoryService</text></g>
+<g class="teal"><rect x="281" y="45" width="110" height="38" rx="8" stroke-width="1"/><text class="ts" x="336.0" y="64.0" text-anchor="middle" dominant-baseline="central">SessionService</text></g>
+<g class="purple"><rect x="409" y="45" width="110" height="38" rx="8" stroke-width="1"/><text class="ts" x="464.0" y="64.0" text-anchor="middle" dominant-baseline="central">LLM</text></g>
+<g class="purple"><rect x="537" y="45" width="110" height="38" rx="8" stroke-width="1"/><text class="ts" x="592.0" y="64.0" text-anchor="middle" dominant-baseline="central">MemoryStore</text></g>
+<line x1="80" y1="83" x2="80" y2="545" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="208" y1="83" x2="208" y2="545" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="336" y1="83" x2="336" y2="545" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="464" y1="83" x2="464" y2="545" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="592" y1="83" x2="592" y2="545" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<text class="ts" x="142.0" y="106" text-anchor="middle">add_session_to_memory(session)</text>
+<line x1="80" y1="120" x2="200" y2="120" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="270.0" y="151" text-anchor="middle">read events</text>
+<line x1="208" y1="165" x2="328" y2="165" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="274.0" y="196" text-anchor="middle">raw events</text>
+<line x1="336" y1="210" x2="216" y2="210" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<text class="ts" x="334.0" y="241" text-anchor="middle">extract facts worth remembering</text>
+<line x1="208" y1="255" x2="456" y2="255" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="338.0" y="286" text-anchor="middle">candidate memories</text>
+<line x1="464" y1="300" x2="216" y2="300" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<rect x="45" y="322" width="600" height="150" rx="8" fill="none" class="arr" stroke-dasharray="6 4" opacity="0.5"/>
+<text class="ts" x="57" y="338" dominant-baseline="central">alt [consolidation enabled]</text>
+<text class="ts" x="398.0" y="351" text-anchor="middle">search existing entries in same scope</text>
+<line x1="208" y1="365" x2="584" y2="365" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="402.0" y="391" text-anchor="middle">existing entries</text>
+<line x1="592" y1="405" x2="216" y2="405" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<path d="M208 430 L248 430 L248 452 L212 452" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="258" y="441" dominant-baseline="central">merge duplicates, resolve contradictions</text>
+<text class="ts" x="398.0" y="484" text-anchor="middle">write MemoryEntry</text>
+<line x1="208" y1="498" x2="584" y2="498" class="arr" marker-end="url(#ar)"/>
+<rect x="45" y="516" width="600" height="30" rx="6" class="box" stroke-width="1"/>
+<text class="ts" x="61" y="532" dominant-baseline="central">Scope = app_name + user_id. Entries in different scopes never merge.</text>
+</svg>

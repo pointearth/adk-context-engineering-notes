@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="700" viewBox="0 0 680 700" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<style>
+.th{font-size:14px;font-weight:600;fill:#1f2933}
+.ts{font-size:12px;fill:#3e4c59}
+.arr{stroke:#7b8794;fill:none;stroke-width:1.2}
+.box{fill:#f5f7fa;stroke:#cbd2d9}
+.gray rect,.gray ellipse,.gray circle{fill:#f0efec;stroke:#b6b2a8}
+.teal rect,.teal ellipse{fill:#e3f2ee;stroke:#8fc7b8}
+.purple rect,.purple ellipse{fill:#efe9f6;stroke:#b9a6d4}
+.coral rect,.coral ellipse{fill:#fbebe6;stroke:#e0a08c}
+.gray text{fill:#3f3d38}.teal text{fill:#1f5c4d}.purple text{fill:#4a3768}.coral text{fill:#8f4229}
+</style>
+<rect width="680" height="700" fill="#ffffff"/>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#7b8794" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+<text class="th" x="25" y="22" dominant-baseline="central">10. handle User turn</text>
+<g class="gray"><rect x="25" y="45" width="100" height="38" rx="8" stroke-width="1"/><text class="ts" x="75.0" y="64.0" text-anchor="middle" dominant-baseline="central">User</text></g>
+<g class="gray"><rect x="150" y="45" width="100" height="38" rx="8" stroke-width="1"/><text class="ts" x="200.0" y="64.0" text-anchor="middle" dominant-baseline="central">Runner</text></g>
+<g class="teal"><rect x="275" y="45" width="100" height="38" rx="8" stroke-width="1"/><text class="ts" x="325.0" y="64.0" text-anchor="middle" dominant-baseline="central">Session</text></g>
+<g class="gray"><rect x="400" y="45" width="100" height="38" rx="8" stroke-width="1"/><text class="ts" x="450.0" y="64.0" text-anchor="middle" dominant-baseline="central">Agent</text></g>
+<g class="purple"><rect x="525" y="45" width="60" height="38" rx="8" stroke-width="1"/><text class="ts" x="555.0" y="64.0" text-anchor="middle" dominant-baseline="central">LLM</text></g>
+<g class="purple"><rect x="600" y="45" width="55" height="38" rx="8" stroke-width="1"/><text class="ts" x="627.5" y="57.0" text-anchor="middle" dominant-baseline="central">Mem</text><text class="ts" x="627.5" y="71.0" text-anchor="middle" dominant-baseline="central">Svc</text></g>
+<line x1="75" y1="83" x2="75" y2="660" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="200" y1="83" x2="200" y2="660" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="325" y1="83" x2="325" y2="660" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="450" y1="83" x2="450" y2="660" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="555" y1="83" x2="555" y2="660" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<line x1="627" y1="83" x2="627" y2="660" class="arr" stroke-dasharray="4 4" opacity="0.35"/>
+<text class="ts" x="135.5" y="106" text-anchor="middle">message</text>
+<line x1="75" y1="120" x2="192" y2="120" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="260.5" y="146" text-anchor="middle">append_event(user msg)</text>
+<line x1="200" y1="160" x2="317" y2="160" class="arr" marker-end="url(#ar)"/>
+<rect x="35" y="180" width="620" height="330" rx="8" fill="none" class="arr" stroke-dasharray="6 4" opacity="0.5"/>
+<text class="ts" x="47" y="196" dominant-baseline="central">loop [until the model returns a plain reply]</text>
+<text class="ts" x="323.0" y="216" text-anchor="middle">GenerateContext</text>
+<line x1="200" y1="230" x2="442" y2="230" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="327.0" y="254" text-anchor="middle">LlmRequest</text>
+<line x1="450" y1="268" x2="208" y2="268" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<text class="ts" x="375.5" y="292" text-anchor="middle">model call</text>
+<line x1="200" y1="306" x2="547" y2="306" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="379.5" y="330" text-anchor="middle">reply or function_call</text>
+<line x1="555" y1="344" x2="208" y2="344" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<text class="ts" x="260.5" y="368" text-anchor="middle">append_event(reply)</text>
+<line x1="200" y1="382" x2="317" y2="382" class="arr" marker-end="url(#ar)"/>
+<rect x="50" y="400" width="590" height="98" rx="8" fill="none" class="arr" stroke-dasharray="5 4" opacity="0.4"/>
+<text class="ts" x="62" y="416" dominant-baseline="central">opt [reply was a function_call]</text>
+<path d="M200 432 L240 432 L240 454 L204 454" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="250" y="443" dominant-baseline="central">execute tool — see LoadMemoryTool</text>
+<text class="ts" x="260.5" y="466" text-anchor="middle">append_event(function_response)</text>
+<line x1="200" y1="480" x2="317" y2="480" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="139.5" y="536" text-anchor="middle">final reply</text>
+<line x1="200" y1="550" x2="83" y2="550" class="arr" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+<text class="ts" x="411.5" y="576" text-anchor="middle">add_session_to_memory (callback)</text>
+<line x1="200" y1="590" x2="619" y2="590" class="arr" marker-end="url(#ar)"/>
+<path d="M200 616 L240 616 L240 638 L204 638" class="arr" marker-end="url(#ar)"/>
+<text class="ts" x="250" y="627" dominant-baseline="central">check compaction threshold — local count, may trigger a summary</text>
+</svg>

@@ -16,7 +16,7 @@ These notes trace that decision, layer by layer.
 
 ### 2.1 Context Window Structure
 <p align="left">
-  <img src="assets/context-window-structure.jpeg" width="500">
+  <img src="assets/context-window-structure.jpeg" width="600">
 </p>
 
 Four blocks, rebuilt every call. State never appears as its own block — it only shows up as
@@ -26,7 +26,7 @@ compaction targets it and nothing else.
 
 ### 2.2 Agent Context Architecture
 <p align="left">
-  <img src="assets/agent-context-architecture.jpeg" width="500">
+  <img src="assets/agent-context-architecture.jpeg" width="600">
 </p>
 
 ## 3. Use Cases
